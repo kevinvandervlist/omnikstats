@@ -34,16 +34,18 @@ void omnikcsv(void) {
 	// check if file exists, otherwise create it 
 	strcpy(filename, getdatetime(now, 2));
 	strcat(filename, "/");
-	strcat(filename, getdatetime(now,2));
+	strcat(filename, getdatetime(now,0));
 	strcat(filename, "data.csv");
 	printf("filename = %s\n", filename);
 	strcpy(stats.filename, filename);
  
 	if (stat(filename, &buffer) != 0) {
 		printf("%s does not exist. Creating file....\n", filename);
-		if ((i=mkdir(getdatetime(now, 2),S_IRWXU|S_IRWXG|S_IROTH)) != 0) {
-			printf("Could not create directory %s, %s\n", getdatetime(now,2), strerror(errno));
-			exit(1);
+		if (stat(getdatetime(now, 2), &buffer) != 0) {
+			if ((i=mkdir(getdatetime(now, 2),S_IRWXU|S_IRWXG|S_IROTH)) != 0) {
+				printf("Could not create directory %s, %s\n", getdatetime(now,2), strerror(errno));
+				exit(1);
+			}
 		}
 		if ((pFile = fopen(filename, "w+")) == NULL) {
 			printf("Could not create file %s\n", filename);
