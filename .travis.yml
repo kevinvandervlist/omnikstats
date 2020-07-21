@@ -1,0 +1,14 @@
+language: c
+compiler: gcc
+addons:
+  apt:
+    packages:
+      - libcurl4-openssl-dev
+script:
+  - make all
+notifications:
+  email:
+    recipients:
+      - travis@kevinvandervlist.nl
+    on_success: never # default: change
+    on_failure: always # default: alway
