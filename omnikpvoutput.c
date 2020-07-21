@@ -63,7 +63,7 @@ int omnikpvoutput(void) {
 		stats.PowerToday,
 		stats.PVPower[0],
 		stats.temperature,
-		stats.PVVoltageDC[0],
+		stats.PVVoltageAC[0],
 		stats.key, stats.ID);
 
 	// get a curl handle
